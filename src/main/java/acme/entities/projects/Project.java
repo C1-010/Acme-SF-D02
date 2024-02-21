@@ -1,3 +1,9 @@
+/*
+ * Project.java
+ *
+ * Copyright (C) 2012-2024 Andres Garcia.
+ *
+ */
 
 package acme.entities.projects;
 
@@ -46,5 +52,7 @@ public class Project extends AbstractEntity {
 
 	@URL
 	private String				furtherInformationLink;
+
+	// Relationships ----------------------------------------------------------
 
 }
