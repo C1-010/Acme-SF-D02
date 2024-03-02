@@ -29,7 +29,7 @@ public class Notice extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past
+	@Past(message = "instantiationMoment must be in the past")
 	@NotNull
 	private Date				instantiationMoment;
 
