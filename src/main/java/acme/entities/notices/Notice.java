@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -34,20 +35,26 @@ public class Notice extends AbstractEntity {
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Length(max = 76)
+	@Length(max = 75)
 	private String				title;
 
+	//computed as: 〈username〉 - 〈surname, name〉
 	@NotBlank
-	@Length(max = 76)
+	@Length(max = 75)
 	private String				author;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 100)
 	private String				message;
 
+	@Email
 	private String				emailAddress;
 
 	@URL
 	private String				link;
+
+	// Derived Attributes -------------------------------------------------------------
+
+	// Relationships -------------------------------------------------------------
 
 }
