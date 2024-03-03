@@ -5,18 +5,21 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
+import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,24 +40,37 @@ public class Sponsorship extends AbstractEntity {
 	private String				code;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past
+	@Past(message = "moment must be in the past")
 	@NotNull
 	private Date				moment;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@PastOrPresent
 	@NotNull
-	private Date				duration;
+	private Date				startDuration;
 
-	@Min(1)
-	private Double				amount;
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	private Date				endDuration;
+
+	@NotNull
+	private Money				amount;
 
 	@NotNull
 	private SponsorshipType		type;
 
+	@Email
 	private String				email;
 
 	@URL
 	private String				link;
+
+	// Derived attributes -------------------------------------------------------------
+
+	// Relationships -------------------------------------------------------------
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Project				project;
 
 }
