@@ -1,12 +1,12 @@
 
-package acme.entities.risks;
+package acme.entities.trainingModules;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
-import javax.validation.constraints.Min;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -21,45 +21,39 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Risk extends AbstractEntity {
+public class TrainingModule extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long			serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "R-[0-9]{3}")
-	private String				reference;
+	@Pattern(regexp = "“[A-Z]{1,3}-[0-9]{3}")
+	private String						code;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Past
-	private Date				identificationDate;
-
-	@Min(0)
-	private Integer				impact;
-
-	private Integer				probability;
+	private Date						creationMoment;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				description;
+	private String						details;
+
+	private TrainingModuleDifficulty	difficultyLevel;
+
+	@Past
+	//antes del creationMoment
+	private Date						updateMoment;
 
 	@URL
-	private String				optionalLink;
+	private String						optionalLink;
+
+	private String						totalTime;
 
 	// Derived attributes -----------------------------------------------------
-
-
-	@Transient
-	public Integer value() {
-		Integer result;
-
-		result = this.impact * this.probability;
-
-		return result;
-	}
 
 	// Relationships ----------------------------------------------------------
 
