@@ -34,7 +34,7 @@ public class Contract extends AbstractEntity {
 
 	@Column(unique = true)
 	@NotBlank
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'")
+	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "{validation.contract.code}")
 	private String				code;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -43,25 +43,21 @@ public class Contract extends AbstractEntity {
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Length(max = 76)
+	@Length(max = 75)
 	private String				providerName;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 75)
+	private String				customerName;
+
+	@NotBlank
+	@Length(max = 100)
 	private String				goals;
 
-	//@Range(min = 0, max = project.getCost())
+	//TODO The budget must be less than or equal to the corresponding project cost
 	private double				budget;
 
 	// Derived attributes -----------------------------------------------------
-
-	//	 @AssertTrue(message = "Budget must be less than or equal to project cost")
-	//	 public boolean isBudgetValid() {
-	//	     if (budget == null || project == null) {
-	//	         return true; 
-	//	     }
-	//	     return budget <= project.getCost();
-	//	    }
 
 	// Relationships ----------------------------------------------------------
 
