@@ -17,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
 import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,7 +56,7 @@ public class Contract extends AbstractEntity {
 	private String				goals;
 
 	//TODO The budget must be less than or equal to the corresponding project cost
-	private double				budget;
+	private Money				budget;
 
 	// Derived attributes -----------------------------------------------------
 
