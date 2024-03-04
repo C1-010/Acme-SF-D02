@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -42,12 +43,15 @@ public class Objective extends AbstractEntity {
 
 	private Priority			priority;
 
+	//If status=1 the objective is critical, if not the objective is not critical
 	private boolean				status;
 
+	//TODO the objective must start at any moment after the instantiation moment
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	private Date				duration;
 
+	@URL
 	@Length(max = 255)
 	private String				optionalLink;
 
