@@ -9,3 +9,4 @@
 # they accept any liabilities with respect to them.
 
 validation.contract.code	= El código debe seguir el patrón '[A-Z]{1,3}-[0-9]{3}'
+validation.progresslog.record-id = El código debe seguir el patrón 'PG-[A-Z]{1,2}-[0-9]{4}'
