@@ -9,3 +9,4 @@
 # they accept any liabilities with respect to them.
 
 validation.contract.code	= Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'
+validation.progresslog.record-id = Code must follow the pattern 'PG-[A-Z]{1,2}-[0-9]{4}'
