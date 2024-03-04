@@ -53,6 +53,9 @@ public class ProgressLog extends AbstractEntity {
 	@Length(max = 75)
 	private String				responsiblePerson;
 
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
