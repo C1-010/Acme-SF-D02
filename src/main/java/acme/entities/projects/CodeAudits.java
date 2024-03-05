@@ -8,11 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -43,36 +43,16 @@ public class CodeAudits extends AbstractEntity {
 	private String				type;
 
 	@NotBlank
-	@Max(100)
+	@Length(max = 100)
 	private List<String>		correctiveActions;
 
+	//computed as the mode of the marks in the corresponding auditing records;
+	//ties must be broken arbitrarily if necessary.
 	@NotBlank
-	@Max(100)
-	private List<Integer>		mark;
-
-
-	public int calculateMark() {
-		if (this.mark.isEmpty())
-			return 0; // No marks available, return 0
-
-		int[] occurrences = new int[101];
-
-		for (int mark : this.mark)
-			occurrences[mark]++;
-
-		int maxOccurrences = 0;
-		int mode = 0;
-
-		for (int i = 0; i < occurrences.length; i++)
-			if (occurrences[i] > maxOccurrences) {
-				maxOccurrences = occurrences[i];
-				mode = i;
-			}
-		return mode;
-	}
-
+	@Length(max = 100)
+	private List<Double>		mark;
 
 	@URL
-	private String furtherInformationLink;
+	private String				optionalLink;
 
 }
