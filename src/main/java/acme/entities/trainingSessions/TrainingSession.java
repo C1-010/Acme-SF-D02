@@ -1,60 +1,64 @@
 
-package acme.entities.trainingModules;
-
-import java.util.Date;
+package acme.entities.trainingSessions;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.entities.trainingModules.TrainingModule;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class TrainingModule extends AbstractEntity {
+public class TrainingSession extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
-	private static final long			serialVersionUID	= 1L;
+	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
-	private String						code;
+	@Pattern(regexp = "TS-[A-Z]{1,3}-[0-9]{3}")
+	private String				code;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Past
-	private Date						creationMoment;
+	//Period
+	//private Period period;
 
 	@NotBlank
-	@Length(max = 100)
-	private String						details;
+	@Length(max = 75)
+	private String				location;
 
-	private TrainingModuleDifficulty	difficultyLevel;
+	@NotBlank
+	@Length(max = 75)
+	private String				instructor;
 
-	@Past
-	//antes del creationMoment
-	private Date						updateMoment;
+	@NotNull
+	@Email
+	private String				contactEmail;
 
 	@URL
-	private String						optionalLink;
-
-	private Integer						totalTime; //Para ponerlo en horas
+	private String				optionalLink;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private TrainingModule		trainingModule;
 
 }
