@@ -1,7 +1,7 @@
 
 package acme.entities.projects;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
