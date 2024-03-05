@@ -35,7 +35,8 @@ public class Client extends AbstractRole {
 	private String				companyName;
 
 	@NotBlank
-	private ClientType			type;
+	@Pattern(regexp = "company|individual", message = "{validation.client.type}")
+	private String				type;
 
 	@NotBlank
 	@Email
