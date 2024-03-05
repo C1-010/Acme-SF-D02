@@ -10,3 +10,4 @@
 
 validation.contract.code	= Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'
 validation.progresslog.record-id = Code must follow the pattern 'PG-[A-Z]{1,2}-[0-9]{4}'
+validation.client.identification = The client identification must follow the pattern 'CLI-[0-9]{4}'
