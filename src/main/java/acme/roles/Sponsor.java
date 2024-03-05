@@ -1,8 +1,6 @@
 
 package acme.roles;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,7 +29,7 @@ public class Sponsor extends AbstractRole {
 
 	@NotBlank
 	@Length(max = 100)
-	private List<String>		benefits;
+	private String				benefits;
 
 	@Email
 	private String				emailContact;

@@ -2,7 +2,6 @@
 package acme.entities.projects;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,13 +43,13 @@ public class CodeAudits extends AbstractEntity {
 
 	@NotBlank
 	@Length(max = 100)
-	private List<String>		correctiveActions;
+	private String				correctiveActions;
 
 	//computed as the mode of the marks in the corresponding auditing records;
 	//ties must be broken arbitrarily if necessary.
 	@NotBlank
-	@Length(max = 100)
-	private List<Double>		mark;
+	//@Length(max = 100)
+	private Double				mark;
 
 	@URL
 	private String				optionalLink;
