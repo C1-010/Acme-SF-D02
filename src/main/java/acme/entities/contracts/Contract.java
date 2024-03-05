@@ -1,33 +1,31 @@
 
-package acme.entities.codeAudits;
+package acme.entities.contracts;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-
+import acme.client.data.datatypes.Money;
+import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class CodeAudits extends AbstractEntity {
+public class Contract extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -36,31 +34,29 @@ public class CodeAudits extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'")
 	@NotBlank
+	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "{validation.contract.code}")
 	private String				code;
 
-	@Temporal(TemporalType.DATE)
-	@Past(message = "Execution date must be in the past")
-	private Date				executionDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Past
+	@NotNull
+	private Date				instantiationMoment;
 
-	@Pattern(regexp = "^(Static|Dynamic)$", message = "Type must be either 'Static' or 'Dynamic'")
-	private String				type;
+	@NotBlank
+	@Length(max = 75)
+	private String				providerName;
+
+	@NotBlank
+	@Length(max = 75)
+	private String				customerName;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				correctiveActions;
+	private String				goals;
 
-	//computed as the mode of the marks in the corresponding auditing records;
-	//ties must be broken arbitrarily if necessary.
-
-	@NotBlank
-	@Length(max = 100)
-	private Double				mark;
-
-	@URL
-	private String				optionalLink;
-
+	//TODO The budget must be less than or equal to the corresponding project cost
+	private Money				budget;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -70,4 +66,5 @@ public class CodeAudits extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Project				project;
+
 }

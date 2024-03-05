@@ -1,33 +1,33 @@
 
-package acme.entities.codeAudits;
+package acme.entities.sponsorships;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-
+import acme.client.data.datatypes.Money;
+import acme.entities.projects.Project;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class CodeAudits extends AbstractEntity {
+public class Sponsorship extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -36,38 +36,39 @@ public class CodeAudits extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'")
 	@NotBlank
+	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
-	@Temporal(TemporalType.DATE)
-	@Past(message = "Execution date must be in the past")
-	private Date				executionDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Past(message = "moment must be in the past")
+	@NotNull
+	private Date				moment;
 
-	@Pattern(regexp = "^(Static|Dynamic)$", message = "Type must be either 'Static' or 'Dynamic'")
-	private String				type;
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	private Date				duration;
 
-	@NotBlank
-	@Length(max = 100)
-	private String				correctiveActions;
+	@NotNull
+	@Positive
+	private Money				amount;
 
-	//computed as the mode of the marks in the corresponding auditing records;
-	//ties must be broken arbitrarily if necessary.
+	@NotNull
+	private SponsorshipType		type;
 
-	@NotBlank
-	@Length(max = 100)
-	private Double				mark;
+	@Email
+	private String				email;
 
 	@URL
-	private String				optionalLink;
+	private String				link;
 
+	// Derived attributes -------------------------------------------------------------
 
-	// Derived attributes -----------------------------------------------------
-
-	// Relationships ----------------------------------------------------------
+	// Relationships -------------------------------------------------------------
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
 	private Project				project;
+
 }

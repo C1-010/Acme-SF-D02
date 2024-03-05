@@ -1,33 +1,30 @@
 
-package acme.entities.codeAudits;
+package acme.entities.contracts;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.URL;
+import org.hibernate.validator.constraints.Range;
 
 import acme.client.data.AbstractEntity;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class CodeAudits extends AbstractEntity {
+public class ProgressLog extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -36,38 +33,32 @@ public class CodeAudits extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'")
 	@NotBlank
-	private String				code;
+	@Pattern(regexp = "PG-[A-Z]{1,2}-[0-9]{4}", message = "{validation.progresslog.record-id}")
+	private String				recordId;
 
-	@Temporal(TemporalType.DATE)
-	@Past(message = "Execution date must be in the past")
-	private Date				executionDate;
-
-	@Pattern(regexp = "^(Static|Dynamic)$", message = "Type must be either 'Static' or 'Dynamic'")
-	private String				type;
+	@Range(min = 0, max = 100)
+	private double				completeness;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				correctiveActions;
+	private String				comment;
 
-	//computed as the mode of the marks in the corresponding auditing records;
-	//ties must be broken arbitrarily if necessary.
+	@Temporal(TemporalType.TIMESTAMP)
+	@Past
+	@NotNull
+	private Date				registrationMoment;
 
 	@NotBlank
-	@Length(max = 100)
-	private Double				mark;
-
-	@URL
-	private String				optionalLink;
-
+	@Length(max = 75)
+	private String				responsiblePerson;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private Project				project;
+	private Contract			contract;
+
 }
