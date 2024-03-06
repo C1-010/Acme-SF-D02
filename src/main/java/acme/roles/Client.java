@@ -27,7 +27,7 @@ public class Client extends AbstractRole {
 
 	@Column(unique = true)
 	@NotBlank
-	@Pattern(regexp = "CLI-[0-9]{4}", message = "{validation.client.identification}")
+	@Pattern(regexp = "^CLI-[0-9]{4}$", message = "{validation.client.identification}")
 	private String				identification;
 
 	@NotBlank
