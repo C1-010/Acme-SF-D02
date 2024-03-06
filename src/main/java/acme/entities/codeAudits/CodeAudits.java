@@ -11,7 +11,7 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -34,16 +34,16 @@ public class CodeAudits extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}", message = "Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'")
+	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$", message = "{validation.codeAudits.code}")
 	@NotBlank
 	private String				code;
 
 	@Temporal(TemporalType.DATE)
-	@Past(message = "Execution date must be in the past")
+	@PastOrPresent
 	private Date				executionDate;
 
-	@Pattern(regexp = "^(Static|Dynamic)$", message = "Type must be either 'Static' or 'Dynamic'")
-	private String				type;
+	@Pattern(regexp = "^(Static|Dynamic)$", message = "{validation.codeAudits.type}")
+	private CodeAuditType		type;
 
 	@NotBlank
 	@Length(max = 100)
@@ -52,7 +52,6 @@ public class CodeAudits extends AbstractEntity {
 	//computed as the mode of the marks in the corresponding auditing records;
 	//ties must be broken arbitrarily if necessary.
 
-	@NotBlank
 	private Double				mark;
 
 	@URL
