@@ -1,6 +1,9 @@
 
 package acme.forms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import acme.client.data.AbstractForm;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,20 +14,24 @@ public class ClientDashboard extends AbstractForm {
 
 	// Serialisation identifier -----------------------------------------------
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long	serialVersionUID				= 1L;
 
 	// Attributes -------------------------------------------------------------
 
-	Double						progressLogsRateBelow25;
-	Integer						progressLogsWithCompletenessBelow25Percent;
-	Integer						progressLogsWithCompleteness25To50Percent;
-	Integer						progressLogsWithCompleteness50To75Percent;
-	Integer						progressLogsWithCompletenessAbove75Percent;
+	// A list based on three quartiles, used to store the total number of progress
+	// logs categorized by completeness ranges.
+	List<Integer>				progressLogsByCompletenessRange	= new ArrayList<>();
 
 	Double						averageContractBudget;
 	Double						deviationContractBudget;
 	Double						minContractBudget;
 	Double						maxContractBudget;
+
+
+	public ClientDashboard() {
+		for (int i = 0; i < 4; i++)
+			this.progressLogsByCompletenessRange.add(0);
+	}
 
 	// Derived attributes -----------------------------------------------------
 
