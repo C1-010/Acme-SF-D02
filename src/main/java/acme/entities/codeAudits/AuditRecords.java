@@ -14,7 +14,6 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-import acme.entities.codeAudits.CodeAudits;
 
 public class AuditRecords extends AbstractEntity {
 
