@@ -1,0 +1,3 @@
+key,key:userAccount,identification,company-name,type,email,optional-link
+auditor-01,user-account-auditor-01,AUD-001,AcmeSF,individual,auditor1@acme.com,http://www.example.com
+auditor-02,user-account-auditor-02,AUD-002,AcmeSF,individual,auditor2@acme.com,http://www.example.com
