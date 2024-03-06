@@ -1,9 +1,10 @@
 
-package acme.entities.codeAudits;
+package acme.entities.auditRecords;
 
 import java.sql.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -14,25 +15,35 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.entities.codeAudits.CodeAudit;
+import lombok.Getter;
+import lombok.Setter;
 
-public class AuditRecords extends AbstractEntity {
+@Entity
+@Getter
+@Setter
+public class AuditRecord extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Column(unique = true)
-	@Pattern(regexp = "AU-[0-9]{4}-[0-9]{3}", message = "Code must follow the pattern 'AU-[0-9]{4}-[0-9]{3}'")
+	@Pattern(regexp = "^AU-[0-9]{4}-[0-9]{3}$", message = "{validation.auditrecords.code}")
 	@NotBlank
 
 	private String				code;
 
 	//at least one hour long
 	@Past
-	private Date				period;
-
 	@NotNull
-	private MarkType			mark;
+	private Date				startPeriod;
+
+	@Past
+	@NotNull
+	private Date				endPeriod;
+
+	private Double				mark;
 
 	@URL
 	private String				furtherInformationLink;
@@ -44,5 +55,5 @@ public class AuditRecords extends AbstractEntity {
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private CodeAudits			CodeAudit;
+	private CodeAudit			CodeAudit;
 }
