@@ -28,11 +28,11 @@ public class Developer extends AbstractRole {
 	private String				degree;
 
 	@NotBlank
-	@Length(max = 75)
+	@Length(max = 100)
 	private String				specialisation;
 
 	@NotBlank
-	@Length(max = 75)
+	@Length(max = 100)
 	private String				skills;
 
 	@NotBlank
