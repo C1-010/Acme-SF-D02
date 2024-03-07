@@ -39,7 +39,6 @@ public class UserStory extends AbstractEntity {
 	private String				description;
 
 	@Positive
-	@NotNull
 	private int					estimatedCost;
 
 	@NotBlank
@@ -50,5 +49,6 @@ public class UserStory extends AbstractEntity {
 	private Priority			priority;
 
 	@URL
+	@Max(255)
 	private String				furtherInformationLink;
 }

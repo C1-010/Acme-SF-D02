@@ -25,14 +25,16 @@ public class ManagerDashboard extends AbstractForm {
 	Integer						totalNumberOfShouldUserStories;
 	Integer						totalNumberOfCouldUserStories;
 	Integer						totalNumberOfWontUserStories;
+
 	Double						averageEstimatedCostOfUserStories;
 	Double						deviationEstimatedCostOfUserStories;
-	Double						minimumEstimatedCostOfUserStories;
-	Double						maximumEstimatedCostOfUserStories;
+	Integer						minimumEstimatedCostOfUserStories;
+	Integer						maximumEstimatedCostOfUserStories;
+
 	Double						averageCostOfProjects;
 	Double						deviationCostOfProjects;
-	Double						minimumCostOfProjects;
-	Double						maximumCostOfProjects;
+	Integer						minimumCostOfProjects;
+	Integer						maximumCostOfProjects;
 
 	// Derived attributes -----------------------------------------------------
 
