@@ -7,3 +7,5 @@ user-account-client-01,true,"UserIdentity{name: 'Client1', surname: 'AcmeSF-C1.0
 user-account-client-02,true,"UserIdentity{name: 'Client2', surname: 'AcmeSF-C1.010', email: 'Client2@acme.com'}",client2,client2
 user-account-sponsor-01,true,"UserIdentity{name: 'Sponsor1', surname: 'AcmeSF-C1.010', email: 'sponsor1@acme.com'}",sponsor1,sponsor1
 user-account-sponsor-02,true,"UserIdentity{name: 'Sponsor2', surname: 'AcmeSF-C1.010', email: 'sponsor2@acme.com'}",sponsor2,sponsor2
+user-account-auditor-01,true,"UserIdentity{name: 'Auditor1', surname: 'AcmeSF-C1.010', email: 'auditor1@acme.com'}",auditor1,auditor1
+user-account-auditor-02,true,"UserIdentity{name: 'Auditor2', surname: 'AcmeSF-C1.010', email: 'auditor2@acme.com'}",auditor2,auditor2
