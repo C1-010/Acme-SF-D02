@@ -30,7 +30,7 @@ public class Notice extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past(message = "instantiationMoment must be in the past")
+	@Past(message = "{validation.notice.instantiation-moment}")
 	@NotNull
 	private Date				instantiationMoment;
 
