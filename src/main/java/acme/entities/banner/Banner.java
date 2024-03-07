@@ -36,7 +36,11 @@ public class Banner extends AbstractEntity {
 	//Must start at any moment after the instantiation/update moment and must last for at least one week
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	private Date				displayPeriod;
+	private Date				startPeriod;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	private Date				endPeriod;
 
 	//Must be stored somewhere else
 	@URL

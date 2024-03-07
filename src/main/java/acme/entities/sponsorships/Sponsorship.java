@@ -14,13 +14,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import acme.client.data.datatypes.Money;
 import acme.entities.projects.Project;
+import acme.roles.Sponsor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,11 +37,11 @@ public class Sponsorship extends AbstractEntity {
 
 	@Column(unique = true)
 	@NotBlank
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
+	@Pattern(regexp = "^[A-Z]{1,3}-\\d{3}$", message = "{validation.sponsorship.code}")
 	private String				code;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past(message = "moment must be in the past")
+	@Past(message = "{validation.sponsorship.moment}")
 	@NotNull
 	private Date				moment;
 
@@ -54,7 +54,6 @@ public class Sponsorship extends AbstractEntity {
 	private Date				endDuration;
 
 	@NotNull
-	@Positive
 	private Money				amount;
 
 	@NotNull
@@ -74,5 +73,10 @@ public class Sponsorship extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Project				project;
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Sponsor				sponsor;
 
 }

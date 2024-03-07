@@ -2,7 +2,6 @@
 package acme.forms;
 
 import acme.client.data.AbstractForm;
-import acme.datatypes.Statistic;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +16,18 @@ public class SponsorDashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	//total number of invoices with a tax less than or equal to 21.00%
-	Integer						numberOfInvoicesWithTaxLessThan;
+	Integer						numberOfInvoicesWithTaxLessEqualThan21;
 	Integer						numberOfSponsorshipsWithLink;
-	Statistic					amountOfSponsorships;
-	Statistic					quantityOfInvoices;
+
+	Double						averageSponsorshipsAmount;
+	Double						deviationSponsorshipsAmount;
+	Double						maximumSponsorshipsAmount;
+	Double						minimumSponsorshipsAmount;
+
+	Double						averageInvoicesQuantity;
+	Double						deviationInvoicesQuantity;
+	Double						maximumInvoicesQuantity;
+	Double						minimumInvoicesQuantity;
 
 	// Derived attributes -----------------------------------------------------
 

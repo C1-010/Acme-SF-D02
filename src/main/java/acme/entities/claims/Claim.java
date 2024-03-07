@@ -1,17 +1,24 @@
+/*
+ * Claim.java
+ *
+ * Copyright (C) 2024 Andres Garcia.
+ *
+ */
 
-package acme.entities.notices;
+package acme.entities.claims;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -21,7 +28,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Notice extends AbstractEntity {
+public class Claim extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -29,32 +36,32 @@ public class Notice extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 
+	@NotBlank
+	@Column(unique = true)
+	@Pattern(regexp = "^C-[0-9]{4}$", message = "{validation.claim.code}")
+	private String				code;
+
+	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past(message = "{validation.notice.instantiation-moment}")
-	@NotNull
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Length(max = 75)
-	private String				title;
-
-	//computed as: 〈username〉 - 〈surname, name〉
-	@NotBlank
-	@Length(max = 75)
-	private String				author;
+	@Max(75)
+	private String				heading;
 
 	@NotBlank
-	@Length(max = 100)
-	private String				message;
+	@Max(100)
+	private String				description;
+
+	@NotBlank
+	@Max(100)
+	private String				department;
 
 	@Email
-	private String				emailAddress;
+	@Max(255)
+	private String				optionalEmail;
 
 	@URL
-	private String				link;
-
-	// Derived Attributes -------------------------------------------------------------
-
-	// Relationships -------------------------------------------------------------
-
+	@Max(255)
+	private String				optionalLink;
 }
