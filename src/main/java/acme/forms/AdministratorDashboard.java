@@ -19,6 +19,7 @@ public class AdministratorDashboard extends AbstractForm {
 	Integer						numberOfClients;
 	Integer						numberOfConsumers;
 	Integer						numberOfDevelopers;
+	Integer						numberOfManagers;
 	Integer						numberOfProviders;
 	Integer						numberOfSponsors;
 
