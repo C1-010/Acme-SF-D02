@@ -12,3 +12,4 @@ validation.contract.code	= Code must follow the pattern '[A-Z]{1,3}-[0-9]{3}'
 validation.progresslog.record-id = Code must follow the pattern 'PG-[A-Z]{1,2}-[0-9]{4}'
 validation.client.identification = The client identification must follow the pattern 'CLI-[0-9]{4}'
 validation.client.type = The client type must be 'company' or 'individual'
+validation.project.code = The code must follow the pattern: three uppercase letters followed by a hyphen and four numeric digits.

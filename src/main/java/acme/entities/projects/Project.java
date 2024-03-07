@@ -36,7 +36,7 @@ public class Project extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{3}-[0-9]{4}", message = "Code must follow the pattern '[A-Z]{3}-[0-9]{4}'")
+	@Pattern(regexp = "^[A-Z]{3}-[0-9]{4}$", message = "{validation.project.code}")
 	@NotBlank
 	private String				code;
 
@@ -46,21 +46,23 @@ public class Project extends AbstractEntity {
 
 	@NotBlank
 	@Max(100)
-	@Column(name = "abstract")
 	private String				abstractInfo;
 
 	private boolean				hasFatalErrors;
 
 	@PositiveOrZero
-	private double				cost;
+	private int					cost;
 
 	@URL
+	@Max(255)
 	private String				furtherInformationLink;
+
+	private boolean				isPublished;
 
 	// Relationships ----------------------------------------------------------
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private UserStory			userStory;
+	private UserStory			userStories;
 }
