@@ -1,0 +1,7 @@
+key,code,instantiation-moment,provider-name,customer-name,goals,budget,key:client
+contract-01,ABC-001,2014/09/28 10:00,Provider 1,Customer 1,Develop software solution,"EUR 15,000.98",client-01
+contract-02,XYZ-002,2014/05/15 09:30,Provider 2,Customer 2,Design marketing campaign,"USD 10,500.50",client-01
+contract-03,DEF-003,2014/02/20 14:45,Provider 3,Customer 3,Consulting services,"GBP 20,000.75",client-01
+contract-04,PQR-004,2014/08/10 13:15,Provider 4,Customer 4,Supply chain optimization,"EUR 25,800.25",client-02
+contract-05,MNO-005,2014/04/05 11:30,Provider 5,Customer 5,Market research analysis,"USD 18,900.75",client-02
+contract-06,JKL-006,2014/11/15 10:45,Provider 6,Customer 6,Web development project,"GBP 30,500.00",client-02
