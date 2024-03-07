@@ -1,0 +1,6 @@
+key,instantiation-moment,title,author,message,email-address,link
+notice-01,2022/07/29 23:59,A,Diaz Pablo,A,newnotice@acme.com,http://www.newnotice.com
+notice-02,2022/07/29 23:59,Hi,Nieto Javier,Report created,newnotice2@acme.com,http://www.newnotice2.com
+notice-03,2022/07/29 23:59,Este es un ejemplo de cadena con 30 caracteres,García Andrés,Esta es una cadena con  caracteres para cumplir con la solicitud de longitud adecuada,newnotice3@acme.com,http://www.newnotice3.com
+notice-04,2022/07/29 23:59,Esta es una cadena  con aproximadamente 70 caracteres para el ejemplo,López Antonio,Esta es una cadena más larga con aproximadamente setenta caracteres para el ejemplo,newnotice4@acme.com,http://www.newnotice4.com
+notice-05,2022/07/29 23:59,Esta es una cadena extensa en torno al total cumpliendo con la solicitud,Sevillano Alejandro,Esta cadena tiene más de cien caracteres y es útil para el último caso que pediste,newnotice5@acme.com,http://www.newnotice5.com
