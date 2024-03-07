@@ -11,10 +11,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
@@ -37,11 +38,11 @@ public class Claim extends AbstractEntity {
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "^C-[0-9]{4}$", message = "{validation.claim.reference}")
+	@Pattern(regexp = "^C-[0-9]{4}$", message = "{validation.claim.code}")
 	private String				code;
 
 	@Past
-	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				instantiationMoment;
 
 	@NotBlank
@@ -57,6 +58,7 @@ public class Claim extends AbstractEntity {
 	private String				department;
 
 	@Email
+	@Max(255)
 	private String				optionalEmail;
 
 	@URL
