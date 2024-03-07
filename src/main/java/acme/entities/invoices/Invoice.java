@@ -8,13 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.URL;
 
@@ -37,11 +39,11 @@ public class Invoice extends AbstractEntity {
 
 	@Column(unique = true)
 	@NotBlank
-	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}")
+	@Pattern(regexp = "^IN-\\d{4}-\\d{4}$", message = "{validation.invoice.code}")
 	private String				code;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past(message = "registrationTime must be in the past")
+	@Past(message = "{validation.invoice.registration-time}")
 	@NotNull
 	private Date				registrationTime;
 
@@ -50,10 +52,12 @@ public class Invoice extends AbstractEntity {
 	private Date				dueDate;
 
 	@NotNull
-	@Positive
 	private Money				quantity;
 
-	@PositiveOrZero
+	@Digits(integer = 1, fraction = 2)
+	@Min(0)
+	@Max(1)
+	@NotNull
 	private Double				tax;
 
 	@URL
@@ -62,11 +66,12 @@ public class Invoice extends AbstractEntity {
 	// Derived attributes -------------------------------------------------------------
 
 
-	public Money totalAmount(final Money quantity, final Double tax) {
-		Double sumTotal = tax * quantity.getAmount() + quantity.getAmount();
+	@Transient
+	public Money totalAmount() {
+		Double sumTotal = this.tax * this.quantity.getAmount() + this.quantity.getAmount();
 		Money totalAmount = new Money();
 		totalAmount.setAmount(sumTotal);
-		totalAmount.setCurrency(quantity.getCurrency());
+		totalAmount.setCurrency(this.quantity.getCurrency());
 		return totalAmount;
 	}
 

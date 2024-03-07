@@ -1,11 +1,9 @@
 
 package acme.roles;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -17,7 +15,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Client extends AbstractRole {
+public class Developer extends AbstractRole {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -25,18 +23,17 @@ public class Client extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@Column(unique = true)
 	@NotBlank
-	@Pattern(regexp = "^CLI-[0-9]{4}$", message = "{validation.client.identification}")
-	private String				identification;
+	@Length(max = 75)
+	private String				degree;
 
 	@NotBlank
 	@Length(max = 75)
-	private String				companyName;
+	private String				specialisation;
 
 	@NotBlank
-	@Pattern(regexp = "company|individual", message = "{validation.client.type}")
-	private String				type;
+	@Length(max = 75)
+	private String				skills;
 
 	@NotBlank
 	@Email

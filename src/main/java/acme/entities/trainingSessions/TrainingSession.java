@@ -1,6 +1,8 @@
 
 package acme.entities.trainingSessions;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -31,11 +33,12 @@ public class TrainingSession extends AbstractEntity {
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "TS-[A-Z]{1,3}-[0-9]{3}")
+	@Pattern(regexp = "^TS-[A-Z]{1,3}-[0-9]{3}$", message = "{validation.trainingsession.code}")
 	private String				code;
 
-	//Period
-	//private Period period;
+	private Date				startPeriod;
+
+	private Date				endPeriod;
 
 	@NotBlank
 	@Length(max = 75)
