@@ -31,15 +31,14 @@ public class AuditRecord extends AbstractEntity {
 	@Column(unique = true)
 	@Pattern(regexp = "^AU-[0-9]{4}-[0-9]{3}$", message = "{validation.auditrecords.code}")
 	@NotBlank
-
 	private String				code;
 
 	//at least one hour long
-	@Past
+	@Past(message = "{validation.auditrecords.start-period}")
 	@NotNull
 	private Date				startPeriod;
 
-	@Past
+	@Past(message = "{validation.auditrecords.end-period}")
 	@NotNull
 	private Date				endPeriod;
 
