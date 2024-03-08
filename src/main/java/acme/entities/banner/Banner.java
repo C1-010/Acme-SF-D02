@@ -40,7 +40,6 @@ public class Banner extends AbstractEntity {
 
 	//Must be stored somewhere else
 	@URL
-	@NotNull
 	private String				picture;
 
 	@NotBlank
@@ -49,7 +48,6 @@ public class Banner extends AbstractEntity {
 
 	//Link to a target web document
 	@URL
-	@NotNull
 	private String				link;
 
 }
