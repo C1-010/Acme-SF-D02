@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
 import acme.client.data.datatypes.Money;
+import acme.entities.projects.Project;
 import acme.roles.Client;
 import lombok.Getter;
 import lombok.Setter;
@@ -63,11 +65,11 @@ public class Contract extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	//	@NotNull
-	//	@Valid
-	//	@ManyToOne(optional = false)
-	//	@OneToMany()
-	//	private Project				project;
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	@OneToMany()
+	private Project				project;
 
 	@NotNull
 	@Valid
