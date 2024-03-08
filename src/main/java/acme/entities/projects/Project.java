@@ -11,11 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 
@@ -41,11 +41,11 @@ public class Project extends AbstractEntity {
 	private String				code;
 
 	@NotBlank
-	@Max(75)
+	@Size(max = 75)
 	private String				title;
 
 	@NotBlank
-	@Max(100)
+	@Size(max = 100)
 	private String				abstractInfo;
 
 	private boolean				hasFatalErrors;
@@ -54,7 +54,7 @@ public class Project extends AbstractEntity {
 	private int					cost;
 
 	@URL
-	@Max(255)
+	@Size(max = 255)
 	private String				furtherInformationLink;
 
 	private boolean				isPublished;

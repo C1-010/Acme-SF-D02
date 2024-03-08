@@ -1,5 +1,5 @@
 /*
- * Project.java
+ * ProjectUserStory.java
  *
  * Copyright (C) 2012-2024 Andres Garcia.
  *
@@ -33,10 +33,10 @@ public class ProjectUserStory extends AbstractEntity {
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private Project				projects;
+	private Project				project;
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private UserStory			userStories;
+	private UserStory			userStory;
 }
