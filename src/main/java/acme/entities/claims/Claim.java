@@ -14,11 +14,11 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -46,22 +46,22 @@ public class Claim extends AbstractEntity {
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Max(75)
+	@Length(max = 75)
 	private String				heading;
 
 	@NotBlank
-	@Max(100)
+	@Length(max = 100)
 	private String				description;
 
 	@NotBlank
-	@Max(100)
+	@Length(max = 100)
 	private String				department;
 
 	@Email
-	@Max(255)
-	private String				optionalEmail;
+	@Length(max = 255)
+	private String				email;
 
 	@URL
-	@Max(255)
-	private String				optionalLink;
+	@Length(max = 255)
+	private String				link;
 }
