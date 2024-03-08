@@ -1,28 +1,26 @@
 /*
- * UserStory.java
+ * Manager.java
  *
  * Copyright (C) 2024 Andres Garcia.
  *
  */
 
-package acme.entities.userStories;
+package acme.roles;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 
-import acme.client.data.AbstractEntity;
+import acme.client.data.AbstractRole;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class UserStory extends AbstractEntity {
+public class Manager extends AbstractRole {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -32,23 +30,22 @@ public class UserStory extends AbstractEntity {
 
 	@NotBlank
 	@Size(max = 75)
-	private String				title;
+	private String				degree;
 
 	@NotBlank
 	@Size(max = 100)
-	private String				description;
-
-	@Positive
-	private int					estimatedCost;
+	private String				overview;
 
 	@NotBlank
 	@Size(max = 100)
-	private String				acceptanceCriteria;
-
-	@NotNull
-	private Priority			priority;
+	private String				certifications;
 
 	@URL
 	@Size(max = 255)
-	private String				furtherInformationLink;
+	private String				optionalLink;
+
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
 }
