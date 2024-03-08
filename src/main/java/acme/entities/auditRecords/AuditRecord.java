@@ -1,11 +1,13 @@
 
 package acme.entities.auditRecords;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -34,10 +36,12 @@ public class AuditRecord extends AbstractEntity {
 	private String				code;
 
 	//at least one hour long
+	@Temporal(TemporalType.TIMESTAMP)
 	@Past(message = "{validation.auditrecords.start-period}")
 	@NotNull
 	private Date				startPeriod;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Past(message = "{validation.auditrecords.end-period}")
 	@NotNull
 	private Date				endPeriod;
