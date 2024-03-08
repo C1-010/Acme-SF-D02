@@ -31,7 +31,7 @@ public class Banner extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
 	@NotNull
-	private Date				instantionMoment;
+	private Date				instantiationMoment;
 
 	//Must start at any moment after the instantiation/update moment and must last for at least one week
 	@Temporal(TemporalType.TIMESTAMP)
