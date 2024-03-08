@@ -15,8 +15,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -41,11 +41,11 @@ public class Project extends AbstractEntity {
 	private String				code;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				title;
 
 	@NotBlank
-	@Size(max = 100)
+	@Length(max = 100)
 	private String				abstractInfo;
 
 	private boolean				hasFatalErrors;
@@ -54,7 +54,7 @@ public class Project extends AbstractEntity {
 	private int					cost;
 
 	@URL
-	@Size(max = 255)
+	@Length(max = 255)
 	private String				furtherInformationLink;
 
 	private boolean				isPublished;
