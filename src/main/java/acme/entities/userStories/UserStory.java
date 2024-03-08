@@ -8,10 +8,10 @@
 package acme.entities.userStories;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 
@@ -31,24 +31,24 @@ public class UserStory extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	@Max(75)
+	@Size(max = 75)
 	private String				title;
 
 	@NotBlank
-	@Max(100)
+	@Size(max = 100)
 	private String				description;
 
 	@Positive
-	@NotNull
 	private int					estimatedCost;
 
 	@NotBlank
-	@Max(100)
+	@Size(max = 100)
 	private String				acceptanceCriteria;
 
 	@NotNull
 	private Priority			priority;
 
 	@URL
+	@Size(max = 255)
 	private String				furtherInformationLink;
 }
