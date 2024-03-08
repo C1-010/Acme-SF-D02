@@ -31,7 +31,7 @@ public class Banner extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
 	@NotNull
-	private Date				instantionMoment;
+	private Date				instantiationMoment;
 
 	//Must start at any moment after the instantiation/update moment and must last for at least one week
 	@Temporal(TemporalType.TIMESTAMP)
@@ -44,7 +44,6 @@ public class Banner extends AbstractEntity {
 
 	//Must be stored somewhere else
 	@URL
-	@NotNull
 	private String				picture;
 
 	@NotBlank
@@ -53,7 +52,6 @@ public class Banner extends AbstractEntity {
 
 	//Link to a target web document
 	@URL
-	@NotNull
 	private String				link;
 
 }
